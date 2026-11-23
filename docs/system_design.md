@@ -163,15 +163,16 @@ Required fields are governed by the MVP product requirements. Invalidation of a 
 
 Representative fields:
 
-* A stable record identifier, if available.
-* Job or invoice date.
-* Vehicle category.
-* Service category.
-* Revenue amount.
-* Labor cost.
-* Parts cost.
-* Job completion time or turnaround duration.
-* Completion or status value.
+* `job_id` (unique identifier).
+* `vehicle_id` (anonymized vehicle identifier).
+* `customer_id` (anonymized identifier for repeat-visit tracking).
+* `service_category`.
+* `job_status` (`completed`, `in_progress`, `cancelled`).
+* `intake_date` and `completion_date`.
+* `labor_revenue`, `parts_revenue`, and `total_revenue`.
+* `labor_hours` (optional/nullable).
+
+The authoritative field definitions are in `docs/product_requirements.md` section 1. Turnaround time is derived from `intake_date` and `completion_date` by the analytics stage and is not stored on the record.
 
 Currency and units must be normalized or explicitly rejected according to configuration.
 
@@ -209,12 +210,15 @@ No denominator may be treated as zero without an explicit result.
 
 A `Finding` links threshold evaluation to evidence:
 
+* Stable finding identifier.
 * Finding type.
 * Severity.
 * Description.
 * Related KPI identifiers.
 * Supporting values.
 * Applicable period.
+* Sample size (`n` jobs evaluated).
+* Low-confidence flag, set when the sample size falls below `min_sample_size`.
 
 Findings must describe observed results rather than unverified causal claims.
 
@@ -222,13 +226,17 @@ Findings must describe observed results rather than unverified causal claims.
 
 A `Recommendation` contains:
 
-* Stable recommendation identifier.
+* Stable recommendation identifier (`recommendation_id`).
+* Title.
+* Source finding identifier (`finding_id`).
+* Evidence summary.
+* KPI references.
+* Severity.
 * Priority.
-* Recommended action.
-* Rationale.
-* Source finding identifiers.
+* Suggested action.
+* Confidence level.
+* Limitations.
 * Affected operational area.
-* Optional confidence or qualification text.
 
 The recommender must not generate a recommendation that has no linked finding.
 

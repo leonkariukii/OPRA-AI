@@ -10,7 +10,11 @@ The **Version 1 (MVP)** focuses on **automotive service centers and repair garag
 
 ```text
 CSV Data Input ─▶ Schema & Rule Validation ─▶ Cleaning & Normalization ─▶ KPI & Trend Analytics ─▶ Rules-Based Findings ─▶ Evidence-Backed Recommendations ─▶ Structured Report
+```
 
+## Repository Structure
+
+```text
 OPRA.AI/
 ├── README.md                  # Project overview, setup, and navigation
 ├── AGENTS.md                  # Mandatory rules and guardrails for AI coding agents
@@ -25,3 +29,4 @@ OPRA.AI/
 │   └── opra/                  # Core application source code
 ├── tests/                     # Automated unit and integration test suites
 └── examples/                  # Synthetic automotive garage datasets for local testing
+```

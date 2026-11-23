@@ -25,8 +25,8 @@ A task is **NOT** complete merely because the script runs without crashing. Ever
    * Unit tests exist for normal paths, empty inputs, zero baselines, invalid dates/amounts, and threshold boundaries.
    * 100% of automated tests pass (`pytest`).
 6. **Static Analysis & Formatting:**
-   * Linting passes with zero warnings/errors (`ruff check .`).
-   * Formatting conforms strictly (`ruff format --check .`).
+   * Linting passes with zero warnings/errors (`ruff check src/ tests/`).
+   * Formatting conforms strictly (`ruff format --check src/ tests/`).
    * Static type checking passes with zero errors (`mypy src/`).
 7. **Documentation Sync:** Any change to contracts, schemas, KPIs, or configuration is reflected in `docs/`.
 8. **Diff & Limitation Review:** Full `git diff` reviewed and all known limitations disclosed in the completion report.
