@@ -1,23 +1,12 @@
 import os
-from unittest import result
-from pymongo import MongoClient
 from dotenv import load_dotenv
-
 from pymongo import MongoClient
-uri = "mongodb+srv://wakanyileonard_db_user:<db_password>@opra.hgnplrc.mongodb.net/"
-client = MongoClient(uri)
-try:
-    client.admin.command("ping")
-    print("Connected successfully")
-    client.close()
-
-except Exception as e:
-    raise Exception(
-        "The following error occurred: ", e)
 
 load_dotenv()
 MONGODB_URI = os.getenv("MONGODB_URI")
-MONGODB_USERNAME = os.getenv("MONGODB_USERNAME")
+
+if not MONGODB_URI:
+    raise RuntimeError("MONGODB_URI is missing. Add it to the .env file.")
 
 client = MongoClient(MONGODB_URI)
 client.admin.command('ping')
