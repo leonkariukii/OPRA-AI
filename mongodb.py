@@ -43,3 +43,8 @@ product_list=[
 ]
 result = products.insert_many(product_list)
 print(f"Inserted products with ids: {result.inserted_ids}")
+
+available_products = products.find({"available": True})
+for product in available_products:
+    print(f"Product Name: {product['name']}, Description: {product['description']}, Price: {product['price']}, Quantity: {product['quantity']}")
+
